@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+<body>
+<div class="header">
+    <h1>Fucking PWA Test-2</h1>
+
+</div>
+
+<div class="navbar">
+    <ul>
+        <li><a href="/">home</a></li>
+        <li><a href="contact.html">contact</a></li>
+        <li><a href="about.html">about</a></li>
+        <li><a href="shopping.html">shopping</a></li>
+    </ul>
+</div>
+
+
+<main class="main">
+    <h2>Home</h2>
+    <div class="pokemon-div">
+
+    </div>
+</main>
+
+<script src="./js/main.js"></script>
+<script >
+    const getPokemon =async ()=>{
+        console.log("Hello")
+        const req =await fetch("https://pokeapi.co/api/v2/pokemon?limit=151/").then(res=>res.json()).then(json=>json)
+        const pokemonDiv = document.querySelector(".pokemon-div")
+        console.log("req=>",req)
+         req.results.forEach((pokemon)=>{
+            const elem = document.createElement("img")
+            elem.setAttribute("src" , `https://img.pokemondb.net/artwork/large/${pokemon.name}.jpg`)
+            elem.setAttribute("width" , "300")
+            elem.setAttribute("height" , '300')
+             elem.setAttribute("border" , "1px solid black")
+            pokemonDiv.appendChild(elem)
+        })
+    }
+
+    getPokemon()
+</script>
+</body>
+</html>
